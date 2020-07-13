@@ -178,8 +178,8 @@ public:
     Point3D GetStartLocation() const final { return start_location_; }
     const std::vector<PlayerResult>& GetResults() const final { return player_results_; }
 
-    bool IsUnitCarryVespene(const Unit unit) const final;
-    bool IsUnitCarryMineral(const Unit unit) const final;
+    bool IsUnitCarryVespene(const Unit& unit) const final;
+    bool IsUnitCarryMineral(const Unit& unit) const final;
 
     const SC2APIProtocol::Observation* GetRawObservation() const final;
 
@@ -637,12 +637,12 @@ const SC2APIProtocol::Observation* ObservationImp::GetRawObservation() const {
     return observation_.get();
 }
 
-bool ObservationImp::IsUnitCarryVespene(const Unit unit) const
+bool ObservationImp::IsUnitCarryVespene(const Unit& unit) const
 {
     return IsCarryingVespene(unit);
 }
 
-bool ObservationImp::IsUnitCarryMineral(const Unit unit) const
+bool ObservationImp::IsUnitCarryMineral(const Unit& unit) const
 {
     return IsCarryingMinerals(unit);
 }
