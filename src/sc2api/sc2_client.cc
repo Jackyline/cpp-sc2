@@ -1,4 +1,4 @@
-#include "sc2api/sc2_client.h"
+﻿#include "sc2api/sc2_client.h"
 #include "sc2api/sc2_common.h"
 #include "sc2api/sc2_proto_interface.h"
 #include "sc2api/sc2_interfaces.h"
@@ -177,6 +177,9 @@ public:
     Point2D GetCameraPos() const final { return camera_pos_; }
     Point3D GetStartLocation() const final { return start_location_; }
     const std::vector<PlayerResult>& GetResults() const final { return player_results_; }
+
+    bool IsUnitCarryVespene(const Unit unit) const final;
+    bool IsUnitCarryMineral(const Unit unit) const final;
 
     const SC2APIProtocol::Observation* GetRawObservation() const final;
 
@@ -632,6 +635,16 @@ bool ObservationImp::UpdateObservation() {
 
 const SC2APIProtocol::Observation* ObservationImp::GetRawObservation() const {
     return observation_.get();
+}
+
+bool ObservationImp::IsUnitCarryVespene(const Unit unit) const
+{
+    return IsCarryingVespene(unit);
+}
+
+bool ObservationImp::IsUnitCarryMineral(const Unit unit) const
+{
+    return IsCarryingMinerals(unit);
 }
 
 //-------------------------------------------------------------------------------------------------

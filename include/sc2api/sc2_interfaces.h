@@ -1,4 +1,4 @@
-/*! \file sc2_interfaces.h
+﻿/*! \file sc2_interfaces.h
     \brief A set of public facing interfaces used to query game state.
 
 Each function in this class is pure virtual but is not intended for a user of the API to overwrite.
@@ -229,6 +229,17 @@ public:
     //!< \return A const pointer to the Observation.
     //!< \sa Observation GetObservation()
     virtual const SC2APIProtocol::Observation* GetRawObservation() const = 0;
+
+    //! Returns 'true' if the given unit is carrying vespene.
+    //!< \param unit
+    //!< \return Carry
+    virtual bool IsUnitCarryVespene(const Unit unit) const = 0;
+
+    //! Returns 'true' if the given unit is carrying mineral.
+    //!< \param unit
+    //!< \return Carry
+    virtual bool IsUnitCarryMineral(const Unit unit) const = 0;
+
 
 };
 
